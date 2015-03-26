@@ -33,10 +33,8 @@ var gulpScssLint = function (options) {
               'xmlPipeOutput',
               'reporterOutput',
               'customReport',
-              'maxBuffer',
-              'endless',
-              'verbose',
-              'sync'];
+              'maxBuffer'
+              ];
 
   options = options || {};
 
@@ -62,30 +60,7 @@ var gulpScssLint = function (options) {
       maxBuffer: options.maxBuffer || 300 * 1024
     };
 
-    if (options.sync || options.endless) {
-      if (child_process.execSync) {
-        try {
-          var result = child_process.execSync(command, commandOptions);
-          fn(null, result);
-        } catch (result) {
-          var error = {code: result.status};
-          fn(error, result.stdout);
-        }
-      } else {
-        var sh = require('execSync');
-
-        var result = sh.exec(command);
-        var error;
-
-        if (result.code) {
-          error = {code: result.code};
-        }
-
-        fn(error, result.stdout);
-      }
-    } else {
-      child_process.exec(command, commandOptions, fn);
-    }
+    child_process.exec(command, commandOptions, fn);
   }
 
   function streamEnd() {
@@ -199,12 +174,7 @@ var gulpScssLint = function (options) {
   }
 
   function writeStream(currentFile) {
-    if (options.endless) {
-      files.push(currentFile);
-      endStream();
-    } else {
-      files.push(currentFile);
-    }
+	  files.push(currentFile);
   }
 
   function endStream() {
