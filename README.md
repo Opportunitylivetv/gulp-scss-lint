@@ -93,20 +93,6 @@ gulp.src(['**/*.scss'])
   .pipe(gulp.dest('./reports'))
 ```
 
-#### endless
-
-- Type: Boolean
-- Default: false
-
-If you use gulp-watch set endless to true.
-
-#### sync
-
-- Type: Boolean
-- Default: sync
-
-`scss-lint` will be executed in sequence.
-
 #### verbose
 
 - Type: Boolean
